@@ -71,64 +71,6 @@
     <button onclick="goToPage2()">Next</button>
 </div>
 
-<!-- Page 2: Choose Field -->
+<!-- Page 2: Choose Desired Field -->
 <div class="container" id="page2" style="display:none;">
-    <h2>Step 2: Choose Your Field</h2>
-    <label>Select Career Field:</label>
-    <select id="field">
-        <option value="Mechanical Design & CAD">Mechanical Design & CAD</option>
-        <option value="Manufacturing Processes">Manufacturing Processes</option>
-        <option value="Quality & Standards">Quality & Standards</option>
-        <option value="Materials Engineering">Materials Engineering</option>
-        <option value="Supply Chain & Lean Manufacturing">Supply Chain & Lean Manufacturing</option>
-        <option value="EV Ecosystem">EV Ecosystem</option>
-    </select>
-    <button onclick="goToPage3()">Next</button>
-</div>
-
-<!-- Page 3: Recommended Companies -->
-<div class="container" id="page3" style="display:none;">
-    <h2>Step 3: Recommended Companies</h2>
-    <div id="companyOutput"></div>
-</div>
-
-<script>
-    let studentName = "";
-    let field = "";
-
-    // Companies mapped to fields
-    const companies = {
-        "Mechanical Design & CAD": ["Tata Motors", "Mahindra & Mahindra", "Bosch"],
-        "Manufacturing Processes": ["Maruti Suzuki", "Hyundai", "Toyota"],
-        "Quality & Standards": ["Honda", "Ford", "General Motors"],
-        "Materials Engineering": ["JSW Steel", "ArcelorMittal", "BASF"],
-        "Supply Chain & Lean Manufacturing": ["Ashok Leyland", "TVS Motors", "Infosys (supply chain consulting)"],
-        "EV Ecosystem": ["Ola Electric", "Ather Energy", "Exide Industries", "Tesla", "BYD"]
-    };
-
-    function goToPage2() {
-        studentName = document.getElementById("studentName").value.trim();
-        if(studentName === "") {
-            alert("Please enter your name.");
-            return;
-        }
-        document.getElementById("page1").style.display = "none";
-        document.getElementById("page2").style.display = "block";
-    }
-
-    function goToPage3() {
-        field = document.getElementById("field").value;
-        let recommendedCompanies = companies[field];
-        document.getElementById("companyOutput").innerHTML = `
-            <h3>Hello, ${studentName}!</h3>
-            <p><strong>Chosen Field:</strong> ${field}</p>
-            <h4>Recommended Companies:</h4>
-            <ul>${recommendedCompanies.map(c => `<li>${c}</li>`).join("")}</ul>
-        `;
-        document.getElementById("page2").style.display = "none";
-        document.getElementById("page3").style.display = "block";
-    }
-</script>
-
-</body>
-</html>
+    <h2>Step 2:
