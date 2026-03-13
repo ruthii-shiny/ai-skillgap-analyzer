@@ -76,18 +76,12 @@
     <h2>Step 2: Choose Your Field</h2>
     <label>Select Career Field:</label>
     <select id="field">
-        <!-- Automotive Manufacturing Fields -->
         <option value="Mechanical Design & CAD">Mechanical Design & CAD</option>
         <option value="Manufacturing Processes">Manufacturing Processes</option>
         <option value="Quality & Standards">Quality & Standards</option>
         <option value="Materials Engineering">Materials Engineering</option>
         <option value="Supply Chain & Lean Manufacturing">Supply Chain & Lean Manufacturing</option>
-        <!-- EV Ecosystem Fields -->
-        <option value="Battery Technology">Battery Technology</option>
-        <option value="Power Electronics">Power Electronics</option>
-        <option value="Embedded Systems">Embedded Systems</option>
-        <option value="Charging Infrastructure">Charging Infrastructure</option>
-        <option value="Regulatory Compliance">Regulatory Compliance</option>
+        <option value="EV Ecosystem">EV Ecosystem</option>
     </select>
     <button onclick="goToPage3()">Next</button>
 </div>
@@ -104,18 +98,12 @@
 
     // Companies mapped to fields
     const companies = {
-        // Automotive Manufacturing
         "Mechanical Design & CAD": ["Tata Motors", "Mahindra & Mahindra", "Bosch"],
         "Manufacturing Processes": ["Maruti Suzuki", "Hyundai", "Toyota"],
         "Quality & Standards": ["Honda", "Ford", "General Motors"],
         "Materials Engineering": ["JSW Steel", "ArcelorMittal", "BASF"],
         "Supply Chain & Lean Manufacturing": ["Ashok Leyland", "TVS Motors", "Infosys (supply chain consulting)"],
-        // EV Ecosystem
-        "Battery Technology": ["Exide Industries", "Amara Raja Batteries", "Tesla", "BYD"],
-        "Power Electronics": ["Siemens", "ABB", "Delta Electronics"],
-        "Embedded Systems": ["Bosch", "Continental", "Valeo"],
-        "Charging Infrastructure": ["Tata Power", "Fortum", "ChargePoint"],
-        "Regulatory Compliance": ["EY", "PwC", "KPMG (automotive consulting)"]
+        "EV Ecosystem": ["Ola Electric", "Ather Energy", "Exide Industries", "Tesla", "BYD"]
     };
 
     function goToPage2() {
@@ -144,4 +132,3 @@
 
 </body>
 </html>
-
