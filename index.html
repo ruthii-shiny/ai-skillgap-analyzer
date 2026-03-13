@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AI Skill Gap Analysis</title>
+    <title>Automotive & EV Career Fields</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -32,7 +32,7 @@
             margin-top: 10px;
             display: block;
         }
-        input, textarea, select {
+        input, select {
             width: 100%;
             padding: 10px;
             margin-top: 5px;
@@ -71,71 +71,51 @@
     <button onclick="goToPage2()">Next</button>
 </div>
 
-<!-- Page 2: Known Skills + Desired Field -->
+<!-- Page 2: Choose Field -->
 <div class="container" id="page2" style="display:none;">
-    <h2>Step 2: Enter Your Known Skills</h2>
-    <label>Current Skills (comma separated):</label>
-    <textarea id="currentSkills" placeholder="e.g., CAD, Excel, Communication"></textarea>
-    <label>Choose Desired Field:</label>
+    <h2>Step 2: Choose Your Field</h2>
+    <label>Select Career Field:</label>
     <select id="field">
-        <option value="Automotive Manufacturing">Automotive Manufacturing</option>
-        <option value="EV Ecosystem">EV Ecosystem</option>
+        <!-- Automotive Manufacturing Fields -->
+        <option value="Mechanical Design & CAD">Mechanical Design & CAD</option>
+        <option value="Manufacturing Processes">Manufacturing Processes</option>
+        <option value="Quality & Standards">Quality & Standards</option>
+        <option value="Materials Engineering">Materials Engineering</option>
+        <option value="Supply Chain & Lean Manufacturing">Supply Chain & Lean Manufacturing</option>
+        <!-- EV Ecosystem Fields -->
+        <option value="Battery Technology">Battery Technology</option>
+        <option value="Power Electronics">Power Electronics</option>
+        <option value="Embedded Systems">Embedded Systems</option>
+        <option value="Charging Infrastructure">Charging Infrastructure</option>
+        <option value="Regulatory Compliance">Regulatory Compliance</option>
     </select>
     <button onclick="goToPage3()">Next</button>
 </div>
 
-<!-- Page 3: Missing Skills -->
+<!-- Page 3: Recommended Companies -->
 <div class="container" id="page3" style="display:none;">
-    <h2>Step 3: Missing Skills</h2>
-    <div id="missingSkillsOutput"></div>
-    <button onclick="goToPage4()">Next</button>
-</div>
-
-<!-- Page 4: Recommended Companies -->
-<div class="container" id="page4" style="display:none;">
-    <h2>Step 4: Recommended Companies</h2>
+    <h2>Step 3: Recommended Companies</h2>
     <div id="companyOutput"></div>
 </div>
 
 <script>
     let studentName = "";
-    let currentSkills = [];
     let field = "";
 
-    // Required skills for Automotive Manufacturing & EV Ecosystem
-    const requiredSkills = {
-        "Automotive Manufacturing": [
-            "CAD",
-            "CNC Machining",
-            "Robotics",
-            "Lean Manufacturing",
-            "Materials Engineering"
-        ],
-        "EV Ecosystem": [
-            "Battery Technology",
-            "Power Electronics",
-            "Embedded Systems",
-            "Charging Infrastructure",
-            "Regulatory Knowledge"
-        ]
-    };
-
-    // Core companies for each field
+    // Companies mapped to fields
     const companies = {
-        "Automotive Manufacturing": [
-            "Tata Motors",
-            "Mahindra & Mahindra",
-            "Maruti Suzuki",
-            "Bosch",
-            "Hyundai"
-        ],
-        "EV Ecosystem": [
-            "Ola Electric",
-            "Ather Energy",
-            "Exide Industries",
-            "Tesla",
-            "BYD"
-        ]
+        // Automotive Manufacturing
+        "Mechanical Design & CAD": ["Tata Motors", "Mahindra & Mahindra", "Bosch"],
+        "Manufacturing Processes": ["Maruti Suzuki", "Hyundai", "Toyota"],
+        "Quality & Standards": ["Honda", "Ford", "General Motors"],
+        "Materials Engineering": ["JSW Steel", "ArcelorMittal", "BASF"],
+        "Supply Chain & Lean Manufacturing": ["Ashok Leyland", "TVS Motors", "Infosys (supply chain consulting)"],
+        // EV Ecosystem
+        "Battery Technology": ["Exide Industries", "Amara Raja Batteries", "Tesla", "BYD"],
+        "Power Electronics": ["Siemens", "ABB", "Delta Electronics"],
+        "Embedded Systems": ["Bosch", "Continental", "Valeo"],
+        "Charging Infrastructure": ["Tata Power", "Fortum", "ChargePoint"],
+        "Regulatory Compliance": ["EY", "PwC", "KPMG (automotive consulting)"]
     };
 
     function goToPage2() {
@@ -149,41 +129,19 @@
     }
 
     function goToPage3() {
-        currentSkills = document.getElementById("currentSkills").value.split(",").map(s => s.trim());
         field = document.getElementById("field").value;
-
-        let neededSkills = requiredSkills[field];
-        let missingSkills = neededSkills.filter(skill => !currentSkills.includes(skill));
-
-        // AI-style priority logic
-        let priority;
-        if (missingSkills.length > 3) priority = "High";
-        else if (missingSkills.length === 2) priority = "Medium";
-        else if (missingSkills.length === 1) priority = "Low";
-        else priority = "None – You’re ready!";
-
-        document.getElementById("missingSkillsOutput").innerHTML = `
-            <h3>Hello, ${studentName}!</h3>
-            <p><strong>Desired Field:</strong> ${field}</p>
-            <p><strong>Missing Skills:</strong></p>
-            <ul>${missingSkills.length > 0 ? missingSkills.map(skill => `<li>${skill}</li>`).join("") : "<li>No missing skills!</li>"}</ul>
-            <p><strong>AI Priority Level:</strong> ${priority}</p>
-        `;
-
-        document.getElementById("page2").style.display = "none";
-        document.getElementById("page3").style.display = "block";
-    }
-
-    function goToPage4() {
         let recommendedCompanies = companies[field];
         document.getElementById("companyOutput").innerHTML = `
-            <h3>Recommended Companies for ${field}:</h3>
+            <h3>Hello, ${studentName}!</h3>
+            <p><strong>Chosen Field:</strong> ${field}</p>
+            <h4>Recommended Companies:</h4>
             <ul>${recommendedCompanies.map(c => `<li>${c}</li>`).join("")}</ul>
         `;
-        document.getElementById("page3").style.display = "none";
-        document.getElementById("page4").style.display = "block";
+        document.getElementById("page2").style.display = "none";
+        document.getElementById("page3").style.display = "block";
     }
 </script>
 
 </body>
 </html>
+
