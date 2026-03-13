@@ -151,10 +151,15 @@
 
     // Navigation functions
     function goToPage2() {
-        studentName = document.getElementById("studentName").value.trim();
-        if(studentName === "") {
-            alert("Please enter your name.");
-            return;
+    studentName = document.getElementById("studentName").value.trim();
+    if(studentName === "") {
+        alert("Please enter your name.");
+        return;
+    }
+    document.getElementById("page1").style.display = "none";
+    document.getElementById("page2").style.display = "block";
+}
+
         }
         document.getElementById("page1").style.display = "none";
         document.getElementById("page2").style.display = "block";
