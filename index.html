@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Automotive & EV Career Fields</title>
+    <title>Automotive & EV Career Path</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -18,7 +18,7 @@
         .container {
             background: rgba(255,255,255,0.9);
             padding: 20px;
-            width: 500px;
+            width: 600px;
             margin: auto;
             border-radius: 12px;
             box-shadow: 0 0 15px #555;
@@ -32,7 +32,7 @@
             margin-top: 10px;
             display: block;
         }
-        input, select {
+        input, textarea, select {
             width: 100%;
             padding: 10px;
             margin-top: 5px;
@@ -42,7 +42,7 @@
         button {
             margin-top: 15px;
             padding: 12px;
-            width: 100%;
+            width: 48%;
             background: #007bff;
             color: white;
             border: none;
@@ -53,11 +53,9 @@
         button:hover {
             background: #0056b3;
         }
-        #output {
-            margin-top: 20px;
-            padding: 15px;
-            background: #e8f5e9;
-            border-radius: 8px;
+        .btn-row {
+            display: flex;
+            justify-content: space-between;
         }
     </style>
 </head>
@@ -68,9 +66,147 @@
     <h2>Step 1: Enter Your Name</h2>
     <label>Student Name:</label>
     <input type="text" id="studentName">
-    <button onclick="goToPage2()">Next</button>
+    <div class="btn-row">
+        <button onclick="goToPage2()">Next</button>
+    </div>
 </div>
 
-<!-- Page 2: Choose Desired Field -->
+<!-- Page 2: Enter Skills -->
 <div class="container" id="page2" style="display:none;">
-    <h2>Step 2:
+    <h2>Step 2: Enter Your Skills</h2>
+    <label>Current Skills (comma separated):</label>
+    <textarea id="currentSkills" placeholder="e.g., CAD, Excel, Communication"></textarea>
+    <div class="btn-row">
+        <button onclick="backToPage1()">Back</button>
+        <button onclick="goToPage3()">Next</button>
+    </div>
+</div>
+
+<!-- Page 3: Choose Desired Field -->
+<div class="container" id="page3" style="display:none;">
+    <h2>Step 3: Choose Your Desired Field</h2>
+    <label>Select Desired Field:</label>
+    <select id="field">
+        <option value="Automotive Manufacturing">Automotive Manufacturing</option>
+        <option value="EV Ecosystem">EV Ecosystem</option>
+    </select>
+    <div class="btn-row">
+        <button onclick="backToPage2()">Back</button>
+        <button onclick="goToPage4()">Next</button>
+    </div>
+</div>
+
+<!-- Page 4: Recommended Skills -->
+<div class="container" id="page4" style="display:none;">
+    <h2>Step 4: Recommended Skills</h2>
+    <div id="skillsOutput"></div>
+    <div class="btn-row">
+        <button onclick="backToPage3()">Back</button>
+        <button onclick="goToPage5()">Next</button>
+    </div>
+</div>
+
+<!-- Page 5: Learning Path + Companies -->
+<div class="container" id="page5" style="display:none;">
+    <h2>Step 5: Learning Path & Companies</h2>
+    <div id="learningOutput"></div>
+    <div class="btn-row">
+        <button onclick="backToPage4()">Back</button>
+    </div>
+</div>
+
+<script>
+    let studentName = "";
+    let currentSkills = [];
+    let field = "";
+
+    // Recommended skills
+    const recommendedSkills = {
+        "EV Ecosystem": [
+            "Battery Technology (Lithium-ion, BMS)",
+            "Electric Powertrain Engineering",
+            "Power Electronics",
+            "Embedded Systems Programming",
+            "Motor Control Systems",
+            "Thermal Management",
+            "Charging Infrastructure",
+            "Vehicle Diagnostics"
+        ],
+        "Automotive Manufacturing": [
+            "Battery Management",
+            "Power Electronics",
+            "Embedded Systems",
+            "High Voltage Safety",
+            "Charging Infrastructure",
+            "Thermal Management",
+            "IoT Connectivity",
+            "AI Diagnostics",
+            "Mechanical Systems",
+            "Engine Technology",
+            "Vehicle Diagnostics",
+            "Manufacturing Processes",
+            "Quality Control",
+            "Sustainability Practices"
+        ]
+    };
+
+    // Learning path resources
+    const learningPath = {
+        "EV Ecosystem": [
+            {name: "Battery Technology Basics (PDF)", link: "https://example.com/battery.pdf"},
+            {name: "EV Powertrain YouTube Lecture", link: "https://www.youtube.com/watch?v=example1"},
+            {name: "Embedded Systems Tutorial", link: "https://www.youtube.com/watch?v=example2"}
+        ],
+        "Automotive Manufacturing": [
+            {name: "Lean Manufacturing Guide (PDF)", link: "https://example.com/lean.pdf"},
+            {name: "Automotive Quality Control YouTube", link: "https://www.youtube.com/watch?v=example3"},
+            {name: "Engine Technology Overview", link: "https://www.youtube.com/watch?v=example4"}
+        ]
+    };
+
+    // Companies
+    const companies = {
+        "EV Ecosystem": ["Ola Electric", "Ather Energy", "Exide Industries", "Tesla", "BYD"],
+        "Automotive Manufacturing": ["Tata Motors", "Mahindra & Mahindra", "Maruti Suzuki", "Bosch", "Hyundai"]
+    };
+
+    // Navigation functions
+    function goToPage2() {
+        studentName = document.getElementById("studentName").value.trim();
+        if(studentName === "") { alert("Please enter your name."); return; }
+        document.getElementById("page1").style.display = "none";
+        document.getElementById("page2").style.display = "block";
+    }
+    function backToPage1() { document.getElementById("page2").style.display = "none"; document.getElementById("page1").style.display = "block"; }
+    function goToPage3() {
+        currentSkills = document.getElementById("currentSkills").value.split(",").map(s => s.trim());
+        document.getElementById("page2").style.display = "none";
+        document.getElementById("page3").style.display = "block";
+    }
+    function backToPage2() { document.getElementById("page3").style.display = "none"; document.getElementById("page2").style.display = "block"; }
+    function goToPage4() {
+        field = document.getElementById("field").value;
+        let skills = recommendedSkills[field];
+        document.getElementById("skillsOutput").innerHTML = `
+            <h3>Hello, ${studentName}!</h3>
+            <p><strong>Your Desired Field:</strong> ${field}</p>
+            <h4>Recommended Skills:</h4>
+            <ul>${skills.map(s => `<li>${s}</li>`).join("")}</ul>
+        `;
+        document.getElementById("page3").style.display = "none";
+        document.getElementById("page4").style.display = "block";
+    }
+    function backToPage3() { document.getElementById("page4").style.display = "none"; document.getElementById("page3").style.display = "block"; }
+    function goToPage5() {
+        let resources = learningPath[field];
+        let recommendedCompanies = companies[field];
+        document.getElementById("learningOutput").innerHTML = `
+            <h3>Learning Path for ${field}:</h3>
+            <ul>${resources.map(r => `<li><a href="${r.link}" target="_blank">${r.name}</a></li>`).join("")}</ul>
+            <h3>Recommended Companies:</h3>
+            <ul>${recommendedCompanies.map(c => `<li>${c}</li>`).join("")}</ul>
+        `;
+        document.getElementById("page4").style.display = "none";
+        document.getElementById("page5").style.display = "block";
+    }
+    function backToPage4() { document.getElementById("page5").style
