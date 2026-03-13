@@ -75,13 +75,11 @@
 <div class="container" id="page2" style="display:none;">
     <h2>Step 2: Enter Your Known Skills</h2>
     <label>Current Skills (comma separated):</label>
-    <textarea id="currentSkills" placeholder="e.g., Python, Excel, Communication"></textarea>
+    <textarea id="currentSkills" placeholder="e.g., CAD, Excel, Communication"></textarea>
     <label>Choose Desired Field:</label>
     <select id="field">
-        <option value="Data Science">Data Science</option>
-        <option value="Web Development">Web Development</option>
-        <option value="Digital Marketing">Digital Marketing</option>
-        <option value="Cyber Security">Cyber Security</option>
+        <option value="Automotive Manufacturing">Automotive Manufacturing</option>
+        <option value="EV Ecosystem">EV Ecosystem</option>
     </select>
     <button onclick="goToPage3()">Next</button>
 </div>
@@ -104,16 +102,41 @@
     let currentSkills = [];
     let field = "";
 
-    // Required skills for each field
+    // Required skills for Automotive Manufacturing & EV Ecosystem
     const requiredSkills = {
-    "Automotive Manufacturing": ["CAD", "CNC Machining", "Robotics", "Lean Manufacturing", "Materials Engineering"],
-    "EV Ecosystem": ["Battery Technology", "Power Electronics", "Embedded Systems", "Charging Infrastructure", "Regulatory Knowledge"]
-};
+        "Automotive Manufacturing": [
+            "CAD",
+            "CNC Machining",
+            "Robotics",
+            "Lean Manufacturing",
+            "Materials Engineering"
+        ],
+        "EV Ecosystem": [
+            "Battery Technology",
+            "Power Electronics",
+            "Embedded Systems",
+            "Charging Infrastructure",
+            "Regulatory Knowledge"
+        ]
+    };
 
-const companies = {
-    "Automotive Manufacturing": ["Tata Motors", "Mahindra & Mahindra", "Maruti Suzuki", "Bosch", "Hyundai"],
-    "EV Ecosystem": ["Ola Electric", "Ather Energy", "Exide Industries", "Tesla", "BYD"]
-};
+    // Core companies for each field
+    const companies = {
+        "Automotive Manufacturing": [
+            "Tata Motors",
+            "Mahindra & Mahindra",
+            "Maruti Suzuki",
+            "Bosch",
+            "Hyundai"
+        ],
+        "EV Ecosystem": [
+            "Ola Electric",
+            "Ather Energy",
+            "Exide Industries",
+            "Tesla",
+            "BYD"
+        ]
+    };
 
     function goToPage2() {
         studentName = document.getElementById("studentName").value.trim();
